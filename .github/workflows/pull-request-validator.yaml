@@ -1,0 +1,13 @@
+name: pull-request-validator
+on: [push, pull_request]
+jobs:
+  linter:
+    name: lint-checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: latest
+          working-directory: ./api
