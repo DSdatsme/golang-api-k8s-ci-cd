@@ -1,5 +1,7 @@
 name: Pull Request Validator
-on: [pull_request,workflow_dispatch]
+
+on: [pull_request]
+
 jobs:
   static-tests:
     name: lint-checker
@@ -17,7 +19,7 @@ jobs:
         uses: golangci/golangci-lint-action@v2
         with:
           version: v1.29.0
-  unit-tester:
+  unit-tests:
     name: unit-test-checker
     runs-on: ubuntu-latest
     steps:
@@ -26,4 +28,3 @@ jobs:
       - name: Running unit tests
         run: |
           cd test && go test
-          
