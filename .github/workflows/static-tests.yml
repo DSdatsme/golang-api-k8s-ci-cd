@@ -16,7 +16,7 @@ jobs:
       - name: Running the lint check on your files
         run: |
           go env
-          go install golang.org/x/lint/golint
+          go get golang.org/x/lint/golint
           golint ./...
   unit-tester:
     name: unit-test-checker
