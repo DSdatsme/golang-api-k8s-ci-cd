@@ -1,7 +1,7 @@
 package testserver
 
 import (
-	svr "api/basicserver"
+	"github.com/DSdatsme/golang-api-deployment/basicserver"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -14,7 +14,7 @@ func TestHelloWorld(t *testing.T) {
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(svr.HelloWorld)
+	handler := http.HandlerFunc(basicserver.HelloWorld)
 	handler.ServeHTTP(rr, req)
 
 	// Check the status code is what we expect.
