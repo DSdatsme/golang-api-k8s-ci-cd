@@ -3,8 +3,8 @@ on:
   push:
   pull_request:
 jobs:
-  golangci:
-    name: lint
+  golang-list:
+    name: lint-checker
     runs-on: ubuntu-latest
     steps:
       - name: Pulling code
