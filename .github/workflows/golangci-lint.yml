@@ -12,4 +12,4 @@ jobs:
       - name: Running the lint check on your files
         uses: golangci/golangci-lint-action@v2
         with:
-          version: v1.16
+          version: v1.29

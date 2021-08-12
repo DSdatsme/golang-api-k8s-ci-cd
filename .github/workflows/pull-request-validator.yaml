@@ -1,8 +1,8 @@
 name: pull-request-validator
 on: [pull_request, push, workflow_dispatch]
 jobs:
-  linter:
-    name: lint-checker
+  unit-tester:
+    name: unit-test-checker
     runs-on: ubuntu-latest
     steps:
       - name: Pulling code
