@@ -13,11 +13,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - name: Running the lint check on your files
-        run: |
-          go env
-          go get golang.org/x/lint/golint
-          golint ./...
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
   unit-tester:
     name: unit-test-checker
     runs-on: ubuntu-latest
