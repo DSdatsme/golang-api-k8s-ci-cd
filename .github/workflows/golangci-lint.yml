@@ -3,13 +3,13 @@ on:
   push:
   pull_request:
 jobs:
-  golangci:
-    name: lint
+  golang-list:
+    name: lint-checker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: golangci-lint
+      - name: Pulling code
+        uses: actions/checkout@v2
+      - name: Running the lint check on your files
         uses: golangci/golangci-lint-action@v2
         with:
           version: v1.29
-          working-directory: api/
