@@ -1,0 +1,34 @@
+name: golangci-lint
+on: [pull_request]
+jobs:
+  static-tests:
+    name: lint-checker
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup go
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.16
+      - name: setup env
+        run: |
+          echo "::set-env name=GOPATH::$(go env GOPATH)"
+          echo "::add-path::$(go env GOPATH)/bin"
+      - name: Pulling code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Running the lint check on your files
+        run: |
+          go env
+          go install golang.org/x/lint/golint
+          golint ./...
+  unit-tester:
+    name: unit-test-checker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pulling code
+        uses: actions/checkout@v2
+      - name: Running unit tests
+        run: |
+          cd test && go test
+          
