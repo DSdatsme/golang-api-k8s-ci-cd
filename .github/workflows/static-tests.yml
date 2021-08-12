@@ -1,5 +1,5 @@
-name: golangci-lint
-on: [pull_request]
+name: Pull Request Validator
+on: [pull_request,workflow_dispatch]
 jobs:
   static-tests:
     name: lint-checker
