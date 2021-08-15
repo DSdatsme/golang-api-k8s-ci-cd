@@ -129,18 +129,18 @@ In this repo we are using `noip.com` as it provides a free subdomain, and thats 
 
 ### Cert Manager
 
-### What
+#### What
 
 - This component is used to generate SSL certs that will enable us to serve our GoLang app on HTTPS.
 - Cert manager generates Lets Encrypt certs, which are trusted by most of the modern browsers.
 
-### Why
+#### Why
 
 - Cert manager automatically updates the cert when cert is about 30days before expiry, hence there is no overhead of cert rotation.
 - Amazing integration with ingress-nginx for issuing new certs.
 - Helm chart becasue its easier to deploy and tweak.
 
-### How
+#### How
 
 - This is a helm chart using which we are setting up a cert manager pods, which are responsible for issuing SSL certs on any certificate CRD or ingress's TLS block.
 - Since this repo has generic k8s config so it can be deployed on any k8s cluster. So to make things generic for cert issuer, we are doing HTTP challenge for Lets Encrypt cert generation.
@@ -214,6 +214,7 @@ helm uninstall --namespace coresystem publicingress
 
 #### What
 
+The process on how to deploy your GoLang api to cluster.
 #### Why
 
 - Creating helm charts was a good option as that avoids config repition and adds templating functionality with vars. So using this you can change a value at one place and it automatically updates everywhere.
@@ -253,7 +254,7 @@ helm uninstall --namespace go-app go-deploy-chart
 
 - Deployments can have proper nodeSelectors, so that app gets deployed on secure/desired subnets.
 
-### Helper
+### Helper Folder
 
 #### What
 
