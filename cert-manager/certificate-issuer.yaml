@@ -1,0 +1,32 @@
+---
+apiVersion: cert-manager.io/v1beta1
+kind: ClusterIssuer
+metadata:
+  name: lets-encrypt-issuer
+  namespace: certmanager
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: dsdatsme1@gmail.com
+    privateKeySecretRef:
+      name: lets-encrypt-issuer-key
+    solvers:
+    - selector: {}
+      http01:
+        ingress:
+          class: publicingress
+
+
+# NOTE: This is a sample config if you want to have a certificate to vaildate if certmanager is setup properly
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: go-app-certificate
+#   namespace: go-app
+# spec:
+#   dnsNames:
+#     - dsdatsme1.ddns.net
+#   secretName: no-secret-name
+#   issuerRef:
+#     name: lets-encrypt-issuer
+#     kind: ClusterIssuer
