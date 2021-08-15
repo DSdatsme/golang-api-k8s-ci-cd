@@ -11,7 +11,7 @@ jobs:
     - id: get-credentials
       uses: google-github-actions/get-gke-credentials@main
       with:
-        cluster_name: my-cluster
+        cluster_name: go-cluster
         location: us-central1-a
         credentials: ${{ secrets.gcp_credentials }}
 
