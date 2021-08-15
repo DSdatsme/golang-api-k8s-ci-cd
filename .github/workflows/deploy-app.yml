@@ -1,0 +1,24 @@
+name: App Deployment Pipeline
+
+on:
+  workflow_dispatch:
+    # branches: [master]
+
+jobs:
+  go-app-deploy:
+    name: Deploy App Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pulling code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Deploying your app
+        uses: 'deliverybot/helm@v1'
+        with:
+          release: 'go-deploy-chart'
+          namespace: 'go-app'
+          chart: 'godeploy/'
+          value-files: 'godeploy/values.yaml'
+        env:
+          KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'

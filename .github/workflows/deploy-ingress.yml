@@ -1,0 +1,25 @@
+name: Ingress Config Deploy Pipeline
+
+on:
+  workflow_dispatch:
+    # branches: [master]
+
+jobs:
+  go-app-deploy:
+    name: Deploy App Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pulling code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: 'Deploy'
+        uses: 'deliverybot/helm@v1'
+        with:
+          release: 'publicingress'
+          namespace: 'coresystem'
+          chart: 'publicingress'
+          repository: 'ingress-nginx/ingress-nginx'
+          value-files: 'ingress-nginx/ingress-values.yaml'
+        env:
+          KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
