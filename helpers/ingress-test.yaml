@@ -1,0 +1,24 @@
+# If you want to test out ingress or validate if SSL certs are getting created on ingress apply,
+# just modify this file and apply
+
+# apiVersion: networking.k8s.io/v1beta1
+# kind: Ingress
+# metadata:
+#   annotations:
+#     kubernetes.io/ingress.class: publicingress
+#     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#   name: go-app-deployment
+#   namespace: default
+# spec:
+#   rules:
+#     - host: dsdatsme.ddns.net
+#       http:
+#         paths:
+#           - backend:
+#               serviceName: go-app-deployment
+#               servicePort: 80
+#             path: /
+#   tls:
+#       - hosts:
+#           - dsdatsme.ddns.net
+#         secretName: dsdatsme-cert
