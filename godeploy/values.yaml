@@ -13,43 +13,27 @@ nameOverride: "go-app"
 fullnameOverride: "go-app-deployment"
 
 serviceAccount:
-  # Specifies whether a service account should be created
-  create: false
-  annotations: {}
+  create: true
   name: "go-app-sa"
 
-podAnnotations: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
 service:
-  type: NodePort
-  port: 8080
+  type: ClusterIP
+  port: 80
 
 ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  enabled: true
+  className: publicingress
+  annotations:
+    cert-manager.io/cluster-issuer: lets-encrypt-issuer
   hosts:
-    - host: chart-example.local
+    - host: dsdatsme.ddns.net
       paths:
         - path: /
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+          pathType: Prefix
+  tls:
+    - hosts:
+        - dsdatsme.ddns.net
+      secretName: dsdatsme-cert
 
 resources:
   limits:
@@ -65,9 +49,3 @@ autoscaling:
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
