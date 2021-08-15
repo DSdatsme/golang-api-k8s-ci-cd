@@ -1,0 +1,20 @@
+name: Test Job
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test Your code
+    runs-on: ubuntu-latest
+    steps:
+    - id: get-credentials
+      uses: google-github-actions/get-gke-credentials@main
+      with:
+        cluster_name: go-cluster
+        location: us-central1-c
+        credentials: ${{ secrets.gcp_credentials }}
+
+    # The KUBECONFIG env var is automatically exported and picked up by kubectl.
+    - id: get-pods
+      run: kubectl get pods -A
