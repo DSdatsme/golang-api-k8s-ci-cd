@@ -13,7 +13,7 @@ jobs:
       with:
         cluster_name: go-cluster
         location: us-central1-c
-        credentials: ${{ secrets.gcp_credentials }}
+        credentials: ${{ secrets.GCLOUD_TOKEN }}
 
     # The KUBECONFIG env var is automatically exported and picked up by kubectl.
     - id: get-pods
